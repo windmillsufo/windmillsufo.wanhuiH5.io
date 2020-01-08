@@ -36,10 +36,10 @@ input::-webkit-input-placeholder {
 						//清空内容 
 						$.each(data, function(infoIndex, info) {
 							if (info["name"] == name) {
-								strHtml += "#" + info["dept"] + "#的#"
-										+ info["name"] + "#，您的桌号是#"
-										+ info["destop_num"] + "号#，组别#"
-										+ info["group"] + "#";
+								strHtml += "【" + info["dept"] + "】的【"
+										+ info["name"] + "】，您的桌号是【"
+										+ info["destop_num"] + "号】，组别【"
+										+ info["group"] + "】";
 								strHtml += "<hr>";
 
 							}
