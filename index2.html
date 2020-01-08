@@ -1,0 +1,115 @@
+<!doctype html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Amaze UI Examples</title>
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<script type="text/javascript" src="data.json"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="css/amazeui.min.css">
+<link rel="stylesheet" href="css/app.css">
+<style type="text/css">
+input::-webkit-input-placeholder {
+	color: #FFFFFF;
+}
+</style>
+<script type="text/javascript">
+	$(function() {
+		$("#btn").click(
+				function() {
+					var name = $("#txtName").val();
+					var tel = $("#txtTel").val();
+
+					$.getJSON("data.json", function(data) {
+						var $jsontip = $("#jsonTip");
+						var strHtml = "";
+						//存储数据的变量
+						$jsontip.empty();
+						//清空内容 
+						$.each(data, function(infoIndex, info) {
+							if (info["name"] == name) {
+								strHtml += "您好，#" + info["dept"] + "#的#"
+										+ info["name"] + "#，您的桌号是#"
+										+ info["destop_num"] + "号#，组别#"
+										+ info["group"] + "#";
+								strHtml += "<hr>";
+
+							}
+						})
+						if (strHtml == "") {
+							strHtml = "抱歉，没有查询记录。"
+						}
+						$jsontip.html(strHtml);
+						//显示处理后的数据 
+					})
+				})
+	})
+</script>
+</head>
+<body>
+	<div class="am-g myapp-login">
+		<div class="myapp-login-bg">
+			<div class="myapp-login-logo" style="height:250px">
+				&nbsp;
+			</div>
+			<div class="am-u-sm-10 myapp-login-form">
+				<form class="am-form">
+					<fieldset>
+
+						<div class="am-form-group">
+
+							<input type="text" class=""
+								style="background-color: #FFFFFF; color: #000000" id="txtName"
+								value="" placeholder="请输入姓名">
+						</div>
+
+						<div class="am-form-group">
+
+							<input type="text" class="" id="txtTel" value=""
+								style="background-color: #FFFFFF; color: #000000"
+								placeholder="请输入手机号码">
+						</div>
+						<p>
+							<button type="button" id="btn" class="am-btn am-btn-default"
+								data-toggle="modal" data-target="#myModal">查询</button>
+						</p>
+
+					</fieldset>
+				</form>
+			</div>
+
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h4 class="modal-title" id="myModalLabel">查询结果</h4>
+				</div>
+				<div class="modal-body" id="jsonTip">在这里添加一些文本</div>
+				<div class="modal-footer" style="text-align:center">
+
+					<button type="button" class="btn btn-primary" style="width:150px;font-size:15px" data-dismiss="modal">
+						关闭</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	
+
+
+</body>
+</html>
